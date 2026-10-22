@@ -40,4 +40,4 @@ cc -std=c11 -Wall -Wextra -Werror -pedantic examples/dynamic_scores.c -o dynamic
 
 预期 C 示例输出：`count=5, sum=445, average=89.0`。支持 GCC/Clang 的环境可以增加 `-fsanitize=address,undefined -g` 检查内存错误。
 
-报告单独交付；仓库不保存个人姓名、学号或带个人编号的 PDF。
+
