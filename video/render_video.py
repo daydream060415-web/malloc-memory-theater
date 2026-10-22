@@ -239,6 +239,9 @@ def audio_and_subs():
  return timeline
 
 def main():
+ global draw_scene
+ from visuals_warm import draw_scene as warm_scene
+ draw_scene=warm_scene
  timeline=audio_and_subs();duration=sum(x['duration'] for x in timeline)
  print(f'Total duration: {duration:.2f}s / {duration/60:.2f}min',flush=True)
  # 保存各镜头样张以做内容、字幕与安全边距检查。
