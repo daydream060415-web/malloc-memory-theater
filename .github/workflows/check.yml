@@ -1,0 +1,22 @@
+name: 验证教学模型与 C 示例
+on: [push, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 验证模型与脚本语法
+        run: |
+          node tests/allocator.test.cjs
+          node --check app.js
+      - name: 编译并检查真实 C 示例
+        run: |
+          cc -std=c11 -Wall -Wextra -Werror -pedantic -fsanitize=address,undefined -g examples/dynamic_scores.c -o dynamic_scores
+          ./dynamic_scores > actual.txt
+          printf 'count=5, sum=445, average=89.0\n' > expected.txt
+          diff -u expected.txt actual.txt

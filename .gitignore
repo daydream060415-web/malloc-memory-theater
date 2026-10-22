@@ -1,0 +1,7 @@
+node_modules/
+*.exe
+dynamic_scores
+*.pdf
+__pycache__/
+.DS_Store
+test-results/
